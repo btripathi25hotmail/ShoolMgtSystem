@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sms.BusinessObjects\Sms.BusinessObjects.csproj" />
+    <ProjectReference Include="..\Sms.Repositories\Sms.Repositories.csproj" />
+    <ProjectReference Include="..\Sms.Services\Sms.Services.csproj" />
+    <ProjectReference Include="..\Sms.Utilities\Sms.Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.9" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+</Project>

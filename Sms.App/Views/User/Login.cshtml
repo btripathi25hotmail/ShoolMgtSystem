@@ -1,0 +1,88 @@
+@model Sms.App.Models.Users.LoginModel
+
+@using Microsoft.AspNetCore.Mvc.Controllers
+
+@{
+    ViewData["Title"] = "Login page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="d-sm-flex align-items-center justify-content-between mb-6">
+    <h1 class="h3 mb-0 text-gray-800"></h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@ViewBag.ControllerName.ToUpper()</li>
+        <li class="breadcrumb-item">
+            <a asp-controller="user" asp-action="login">SIGNIN</a>
+        </li>
+    </ol>
+</div>
+@* <partial name="_Spinner"></partial> *@
+
+
+<div class="row">
+    <div class="col-lg-12 mb-4">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-12 col-md-9">
+                <div class="card shadow-sm my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="login-form">
+                                    <div class="text-center">
+                                        @if (ViewBag.IsLoginFailed != null && ViewBag.IsLoginFailed == true)
+                                        {
+                                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <h6><i class="fas fa-ban"></i><b> Error!</b></h6>
+                                                Invalid email address or password. Please retry with valid email address and
+                                                password.
+                                            </div>
+                                        }
+                                        <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                    </div>
+                                    <form class="user" asp-action="login" asp-controller="user" method="POST">
+                                        <div class="form-group">
+                                            <input asp-for="Email" class="form-control" id="exampleInputEmail"
+                                                autocomplete="off" aria-describedby="emailHelp"
+                                                placeholder="Enter Email Address">
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <input asp-for="Password" class="form-control" id="exampleInputPassword"
+                                                placeholder="Password">
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" href="index.html" class="btn btn-primary btn-block"
+                                                value="Login" />
+                                        </div>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="font-weight-bold small text-info" asp-controller="user"
+                                            asp-action="register">Create an Account!</a>
+                                        <a class="font-weight-bold small text-danger" asp-controller="user"
+                                            asp-action="forgotpassword">Forgot Password!</a>
+                                    </div>
+                                    <div class="text-center">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+@section Scripts
+{
+<partial name="_ValidationScriptsPartial"></partial>
+}
