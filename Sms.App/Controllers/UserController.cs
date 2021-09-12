@@ -44,7 +44,7 @@ namespace Sms.App.Controllers
             {
                 await HttpContext.SignOutAsync();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("login");
         }
 
         #endregion
