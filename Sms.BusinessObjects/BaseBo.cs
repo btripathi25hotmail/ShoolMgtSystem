@@ -8,5 +8,6 @@ namespace Sms.BusinessObjects
         public DateTime? UpdatedOn { get; set; }
         public string UpdatedBy { get; set; }
         public bool IsActive { get; set; }
+        public string CreatedByName { get; set; }
     }
 }

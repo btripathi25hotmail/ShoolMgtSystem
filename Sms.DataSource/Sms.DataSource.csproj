@@ -11,9 +11,4 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="../Sms.BusinessObjects/Sms.BusinessObjects.csproj" /> 
-    <ProjectReference Include="../Sms.DataSource/Sms.DataSource.csproj" /> 
-  </ItemGroup>
-
 </Project>

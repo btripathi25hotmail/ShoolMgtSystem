@@ -1,9 +1,9 @@
 ﻿using Sms.BusinessObjects.User;
 using System.Threading.Tasks;
 
-namespace Sms.Repositories.User
+namespace Sms.Services.User
 {
-    public interface IUserRepository
+    public interface IUserService
     {
         Task<LoginDetailBo> ValidateAsync<LoginDetailBo>(LoginBo login);
     }

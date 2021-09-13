@@ -9,5 +9,6 @@ namespace Sms.App.Models
         public string UpdatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public bool IsActive { get; set; }
+        public string CreatedByName { get; set; }
     }
 }
