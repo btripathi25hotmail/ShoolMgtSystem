@@ -8,13 +8,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="/img/logo/logo.png" rel="icon">
-    <title>RuangAdmin - Dashboard</title>
+    <title>@ViewData["Title"]</title>
     <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="~/css/ruang-admin.min.css" rel="stylesheet">
+
 </head>
 
-<body id="page-top">
+<body id="page-top" ng-app="smsApp">
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
@@ -29,7 +30,8 @@
             <li class="nav-item active">
                 <a class="nav-link" asp-controller="home" asp-action="index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
             </li>
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
@@ -44,16 +46,23 @@
                 <div id="collapseBootstrap2" class="collapse" aria-labelledby="headingBootstrap"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="alerts.html"><i class="fa fa-user"></i> Create
-                            Teacher</a>
+                        <a class="collapse-item" asp-controller="userrole" asp-action="index">
+                            <i class="fa fa-pen"></i> Manage Roles
+                        </a>
                         <a class="collapse-item" href="buttons.html"><i class="fa fa-list-ul"></i> Teacher's List</a>
-                        <a class="collapse-item" href="dropdowns.html"><i class="fa fa-comments"></i> Teacher's
-                            Feedback</a>
+                        <a class="collapse-item" href="dropdowns.html">
+                            <i class="fa fa-comments"></i> Teacher's
+                            Feedback
+                        </a>
                         <a class="collapse-item" href="modals.html"><i class="fa fa-comments"></i> Parent's Feedback</a>
-                        <a class="collapse-item" href="popovers.html"><i class="fa fa-comments"></i> Student's
-                            Feedback</a>
-                        <a class="collapse-item" href="progress-bar.html"><i class="fa fa-shopping-bag"></i>
-                            Payments</a>
+                        <a class="collapse-item" href="popovers.html">
+                            <i class="fa fa-comments"></i> Student's
+                            Feedback
+                        </a>
+                        <a class="collapse-item" href="progress-bar.html">
+                            <i class="fa fa-shopping-bag"></i>
+                            Payments
+                        </a>
                     </div>
                 </div>
             </li>
@@ -66,16 +75,24 @@
                 <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="alerts.html"><i class="fa fa-user"></i> Create
-                            Teacher</a>
+                        <a class="collapse-item" href="alerts.html">
+                            <i class="fa fa-user"></i> Create
+                            Teacher
+                        </a>
                         <a class="collapse-item" href="buttons.html"><i class="fa fa-list-ul"></i> Teacher's List</a>
-                        <a class="collapse-item" href="dropdowns.html"><i class="fa fa-comments"></i> Teacher's
-                            Feedback</a>
+                        <a class="collapse-item" href="dropdowns.html">
+                            <i class="fa fa-comments"></i> Teacher's
+                            Feedback
+                        </a>
                         <a class="collapse-item" href="modals.html"><i class="fa fa-comments"></i> Parent's Feedback</a>
-                        <a class="collapse-item" href="popovers.html"><i class="fa fa-comments"></i> Student's
-                            Feedback</a>
-                        <a class="collapse-item" href="progress-bar.html"><i class="fa fa-shopping-bag"></i>
-                            Payments</a>
+                        <a class="collapse-item" href="popovers.html">
+                            <i class="fa fa-comments"></i> Student's
+                            Feedback
+                        </a>
+                        <a class="collapse-item" href="progress-bar.html">
+                            <i class="fa fa-shopping-bag"></i>
+                            Payments
+                        </a>
                     </div>
                 </div>
             </li>
@@ -89,15 +106,21 @@
                 <div id="collapseBootstrap1" class="collapse" aria-labelledby="headingBootstrap"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="alerts.html"><i class="fa fa-user"></i> Create
-                            Student</a>
+                        <a class="collapse-item" href="alerts.html">
+                            <i class="fa fa-user"></i> Create
+                            Student
+                        </a>
                         <a class="collapse-item" href="buttons.html"><i class="fa fa-list-ul"></i> Students's List</a>
-                        <a class="collapse-item" href="dropdowns.html"><i class="fa fa-comments"></i> Teacher's
-                            Feedback</a>
+                        <a class="collapse-item" href="dropdowns.html">
+                            <i class="fa fa-comments"></i> Teacher's
+                            Feedback
+                        </a>
                         <a class="collapse-item" href="modals.html"><i class="fa fa-comments"></i> Parent's Feedback</a>
 
-                        <a class="collapse-item" href="progress-bar.html"><i class="fa fa-calendar"></i>
-                            Attendances</a>
+                        <a class="collapse-item" href="progress-bar.html">
+                            <i class="fa fa-calendar"></i>
+                            Attendances
+                        </a>
                     </div>
                 </div>
             </li>
@@ -258,10 +281,12 @@
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                        <div class="text-truncate">
+                                            Hi there! I am wondering if you can help me with a
                                             problem I've been
-                                            having.</div>
-                                        <div class="small text-gray-500">Udin Cilok · 58m</div>
+                                            having.
+                                        </div>
+                                        <div class="small text-gray-500">Udin Cilok � 58m</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -270,10 +295,12 @@
                                         <div class="status-indicator bg-default"></div>
                                     </div>
                                     <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                        <div class="text-truncate">
+                                            Am I a good boy? The reason I ask is because someone
                                             told me that people
-                                            say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Jaenab · 2w</div>
+                                            say this to all dogs, even if they aren't good...
+                                        </div>
+                                        <div class="small text-gray-500">Jaenab � 2w</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
@@ -292,7 +319,8 @@
                                 </h6>
                                 <a class="dropdown-item align-items-center" href="#">
                                     <div class="mb-3">
-                                        <div class="small text-gray-500">Design Button
+                                        <div class="small text-gray-500">
+                                            Design Button
                                             <div class="small float-right"><b>50%</b></div>
                                         </div>
                                         <div class="progress" style="height: 12px;">
@@ -303,7 +331,8 @@
                                 </a>
                                 <a class="dropdown-item align-items-center" href="#">
                                     <div class="mb-3">
-                                        <div class="small text-gray-500">Make Beautiful Transitions
+                                        <div class="small text-gray-500">
+                                            Make Beautiful Transitions
                                             <div class="small float-right"><b>30%</b></div>
                                         </div>
                                         <div class="progress" style="height: 12px;">
@@ -314,7 +343,8 @@
                                 </a>
                                 <a class="dropdown-item align-items-center" href="#">
                                     <div class="mb-3">
-                                        <div class="small text-gray-500">Create Pie Chart
+                                        <div class="small text-gray-500">
+                                            Create Pie Chart
                                             <div class="small float-right"><b>75%</b></div>
                                         </div>
                                         <div class="progress" style="height: 12px;">
@@ -331,7 +361,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-profile rounded-circle" src="/img/boy.png" style="max-width: 60px">
-                                <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
+                                <span class="ml-2 d-none d-lg-inline text-white small">@User.Identity.Name</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -358,7 +388,6 @@
                     </ul>
                 </nav>
                 <!-- Topbar -->
-
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
                     @RenderBody()
@@ -369,8 +398,9 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>copyright &copy;
-                            <script> document.write(new Date().getFullYear());</script> - developed by
+                        <span>
+                            copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> - developed by
                             <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b>
                         </span>
                     </div>
@@ -378,8 +408,9 @@
 
                 <div class="container my-auto py-2">
                     <div class="copyright text-center my-auto">
-                        <span>copyright &copy;
-                            <script> document.write(new Date().getFullYear());</script> - distributed by
+                        <span>
+                            copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> - distributed by
                             <b><a href="https://themewagon.com/" target="_blank">themewagon</a></b>
                         </span>
                     </div>
@@ -420,8 +451,16 @@
     <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="~/js/ruang-admin.min.js"></script>
-    <script src="~/vendor/chart.js/Chart.min.js"></script>
-    <script src="~/js/demo/chart-area-demo.js"></script>
+    @* <script src="~/vendor/chart.js/Chart.min.js"></script>
+        <script src="~/js/demo/chart-area-demo.js"></script> *@
+
+    <script src="~/nglibrary/angular.js"></script>
+    <script src="~/nglibrary/angular-animate.js"></script>
+    <script src="~/nglibrary/angular-route.js"></script>
+    <script src="~/nglibrary/angular-cookies.js"></script>
+    <script src="~/nglibrary/angular-sanitize.js"></script>
+    <script src="~/apps/app.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

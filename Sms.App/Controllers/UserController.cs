@@ -8,19 +8,21 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sms.App.Models.Users;
 using Sms.BusinessObjects.User;
-using Sms.Repositories.User;
+using Sms.Services.User;
 
 namespace Sms.App.Controllers
 {
+    [AutoValidateAntiforgeryToken]
+    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public class UserController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly IUserRepository _user;
+        private readonly IUserService _userService;
 
-        public UserController(IMapper mapper, IUserRepository user)
+        public UserController(IMapper mapper, IUserService userService)
         {
             _mapper = mapper;
-            _user = user;
+            _userService = userService;
         }
 
         #region HTTPGET Action Methods
@@ -37,6 +39,12 @@ namespace Sms.App.Controllers
             return View();
         }
 
+        [HttpGet("User/ForgotPassword/{email}")]
+        public IActionResult ForgotPassword(string email)
+        {
+            return View();
+        }
+
         [Authorize]
         public async Task<IActionResult> Logout()
         {
@@ -44,12 +52,14 @@ namespace Sms.App.Controllers
             {
                 await HttpContext.SignOutAsync();
             }
-            return RedirectToAction("login");
+            return RedirectToAction("Login");
         }
 
         #endregion
 
         #region HTTPPOST Action methods
+
+        //[ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel loginModel)
         {
@@ -57,7 +67,7 @@ namespace Sms.App.Controllers
             if (ModelState.IsValid)
             {
                 var login = _mapper.Map<LoginBo>(loginModel);
-                var userDetail = _mapper.Map<LoginDetailModel>(await _user.Validate<LoginDetailBo>(_mapper.Map<LoginBo>(loginModel)));
+                var userDetail = _mapper.Map<LoginDetailModel>(await _userService.ValidateAsync<LoginDetailBo>(_mapper.Map<LoginBo>(loginModel)));
                 if (userDetail != null)
                 {
                     var cliams = new List<Claim>()
@@ -80,6 +90,7 @@ namespace Sms.App.Controllers
             }
             return View(loginModel);
         }
+
         #endregion
 
         private void SetNames()

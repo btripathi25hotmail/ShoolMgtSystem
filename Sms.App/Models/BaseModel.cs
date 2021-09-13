@@ -1,7 +1,4 @@
 using System;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Sms.App.Models
 {
@@ -12,5 +9,6 @@ namespace Sms.App.Models
         public string UpdatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public bool IsActive { get; set; }
+        public string CreatedByName { get; set; }
     }
 }

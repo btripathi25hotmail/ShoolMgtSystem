@@ -4,7 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sms.App
 {
@@ -21,8 +24,7 @@ namespace Sms.App
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(map => map.AddProfile<MappingProfile>(), typeof(Startup));
-            services.AddControllersWithViews()
-                .AddRazorRuntimeCompilation();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(
                     options =>
@@ -44,10 +46,7 @@ namespace Sms.App
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
             }
-
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -58,8 +57,9 @@ namespace Sms.App
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "areaView",
-                    pattern: "{area}/{controller=Dashboard}/{action=Index}/{id?}");
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=User}/{action=Login}/{id?}");

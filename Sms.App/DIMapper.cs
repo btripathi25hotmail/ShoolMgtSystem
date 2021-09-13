@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sms.Repositories;
+using Sms.DataSource;
 using Sms.Repositories.User;
 
 namespace Sms.App
@@ -8,8 +8,11 @@ namespace Sms.App
     {
         public static void MapDependencies(this IServiceCollection services)
         {
-            services.AddScoped<IDbOperations, DbOperations>()
-                .AddTransient<IUserRepository, UserRepository>();
+            services.AddScoped<Sms.DataSource.IDataOperations, Sms.DataSource.DataOperations>()
+                .AddTransient<IUserRepository, UserRepository>()
+                .AddTransient<Services.User.IUserService,Services.User.UserService>()
+                .AddTransient<Repositories.Master.IRoleRepository,Repositories.Master.RoleRepository>()
+                .AddTransient<Services.Master.IRoleService,Services.Master.RoleService>();
         }
     }
 }

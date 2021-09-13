@@ -1,4 +1,4 @@
-namespace Sms.BusinessObjects.Master
+﻿namespace Sms.BusinessObjects.Master
 {
     public class RoleBo : BaseBo
     {

@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../Sms.BusinessObjects/Sms.BusinessObjects.csproj" /> 
+    <ProjectReference Include="../Sms.Repositories/Sms.Repositories.csproj" /> 
+  </ItemGroup>
+
 </Project>
