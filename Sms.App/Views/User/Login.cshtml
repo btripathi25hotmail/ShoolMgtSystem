@@ -46,18 +46,18 @@
                                     <form class="user" asp-action="login" asp-controller="user" method="POST">
                                         <div class="form-group">
                                             <input asp-for="Email" class="form-control" id="exampleInputEmail"
-                                                   autocomplete="off" aria-describedby="emailHelp"
-                                                   placeholder="Enter Email Address">
+                                                autocomplete="off" aria-describedby="emailHelp" disallow-Spaces
+                                                placeholder="Enter Email Address">
                                             <span asp-validation-for="Email" class="text-danger"></span>
                                         </div>
                                         <div class="form-group">
                                             <input asp-for="Password" class="form-control" id="exampleInputPassword"
-                                                   placeholder="Password">
+                                                disallow-Spaces placeholder="Password">
                                             <span asp-validation-for="Password" class="text-danger"></span>
                                         </div>
                                         <div class="form-group">
                                             <input type="submit" href="index.html" class="btn btn-primary btn-block"
-                                                   value="Login" />
+                                                value="Login" />
                                         </div>
                                         @Html.AntiForgeryToken()
                                     </form>
@@ -84,5 +84,6 @@
 </a>
 @section Scripts
 {
+<script src="~/apps/directives/ngEnter.js"></script>
 <partial name="_ValidationScriptsPartial"></partial>
 }

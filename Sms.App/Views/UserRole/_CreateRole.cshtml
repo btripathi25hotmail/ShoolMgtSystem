@@ -1,0 +1,25 @@
+<div class="row" id="createRoleDiv" ng-if="showCreateLayout">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Create new role</h6>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    @*<label for="exampleInputEmail1"></label>*@
+                    <input type="text" class="form-control" ng-model="roleModel.roleName" id="exampleInputEmail1"
+                        ng-enter="createRole(roleModel)" disallow-Spaces aria-describedby="emailHelp"
+                        placeholder="Enter role name">
+                </div>
+                <div class="form-group">
+                    <a href="javascript:;" ng-click="createRole(roleModel)" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Create</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

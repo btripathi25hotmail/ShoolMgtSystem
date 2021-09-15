@@ -15,6 +15,7 @@
     });
 })();
 
+
 (function () {
     'use strict';
     smsApp.directive('convertToNumber', function () {
@@ -31,3 +32,19 @@
         };
     });
 })();
+
+// prevent white space
+(function () {
+    'use strict';
+    smsApp.directive('disallowSpaces', function () {
+        return {
+            restrict: 'A',
+
+            link: function ($scope, $element) {
+                $element.bind('input', function () {
+                    $(this).val($(this).val().replace(/ /g, ''));
+                });
+            }
+        };
+    });
+}());

@@ -2,17 +2,21 @@
     'use strict';
     smsApp.factory('roleService', ['$http', '$q', function ($http, $q) {
         return {
-            validate: (loginModel) => {
-                var deferred = $q.defer();
-                return $http.post("http://localhost:5287" + "validateuser", loginModel).then(deferred.resolve).catch(deferred.reject), deferred.promise;
-            },
-            resetPassword: (resetModel) => {
-                var deferred = $q.defer();
-                return $http.post("http://localhost:5287" + "resetpassword", resetModel).then(deferred.resolve).catch(deferred.reject), deferred.promise;
-            },
             getRoles: () => {
                 var deferred = $q.defer();
                 return $http.get("/userrole/GetRoles").then(deferred.resolve).catch(deferred.reject), deferred.promise;
+            },
+            createRole: (roleModel) => {
+                var deferred = $q.defer();
+                return $http.post("/userrole/CreateRole", roleModel).then(deferred.resolve).catch(deferred.reject), deferred.promise;
+            },
+            updateRole: (roleModel) => {
+                var deferred = $q.defer();
+                return $http.post("/userrole/UpdateRole", roleModel).then(deferred.resolve).catch(deferred.reject), deferred.promise;
+            },
+            deleteRole: (roleId) => {
+                var deferred = $q.defer();
+                return $http.get("/userrole/DeleteRole/" + roleId).then(deferred.resolve).catch(deferred.reject), deferred.promise;
             }
         };
     }]);
