@@ -8,6 +8,7 @@ using Sms.App.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using Sms.BusinessObjects;
+using System.Linq;
 
 namespace Sms.App.Controllers
 {
@@ -18,7 +19,7 @@ namespace Sms.App.Controllers
         private readonly IMapper _mapper;
         private readonly IRoleService _roleService;
 
-        public UserRoleController(IMapper mapper,IRoleService roleService)
+        public UserRoleController(IMapper mapper, IRoleService roleService)
         {
             _mapper = mapper;
             _roleService = roleService;
@@ -31,19 +32,20 @@ namespace Sms.App.Controllers
         #endregion
 
         #region HTTPPOST JsonResult ActionResults
-        
+
         [HttpPost]
-        public async Task<JsonResult> CreateRole(RoleModel model)
+        public async Task<JsonResult> CreateRole([FromBody] RoleModel model)
         {
             if (ModelState.IsValid)
             {
+                model.CreatedBy = User.Claims.FirstOrDefault(claim => claim.Type == "username").Value;
                 return Json(await _roleService.InsertRoleAsync(_mapper.Map<RoleBo>(model)));
             }
             return Json(new ResposneModel { IsError = true, Message = ApplicationMessage.ModelStateFailed });
         }
 
         [HttpPost]
-        public async Task<JsonResult> UpdateRole(RoleModel model)
+        public async Task<JsonResult> UpdateRole([FromBody] RoleModel model)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +61,7 @@ namespace Sms.App.Controllers
         [HttpGet]
         public async Task<JsonResult> DeleteRole(int id)
         {
-            return Json(await _roleService.DeleteRoleAsync(id)); 
+            return Json(await _roleService.DeleteRoleAsync(id));
         }
 
         [HttpGet]

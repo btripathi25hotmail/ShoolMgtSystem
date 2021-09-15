@@ -3,9 +3,9 @@
     smsApp.controller('rolemasterController',
         ['$scope', '$window', 'roleService', function ($scope, $window, roleService) {
             $scope.roleId = 0;
-            $scope.roleName = '';
-            $scope.createdBy = '';
-            $scope.isActive = false;
+            // $scope.roleName = '';
+            // $scope.createdBy = '';
+            // $scope.isActive = false;
             $scope.isNoRecordFound = false;
             $scope.roles = [];
             $scope.showCreateLayout = true;
@@ -14,7 +14,14 @@
             $scope.role = {};
             $scope.validationErrors = [];
 
-            $scope.roleModel = {
+            // $scope.roleModel = {
+            //     roleId: $scope.roleId,
+            //     roleName: $scope.roleName,
+            //     createdBy: $scope.createdBy,
+            //     isActive: $scope.isActive
+            // };
+
+            $scope.roleModelTemp = {
                 roleId: $scope.roleId,
                 roleName: $scope.roleName,
                 createdBy: $scope.createdBy,
@@ -41,7 +48,6 @@
 
             $scope.createRole = (roleModel) => {
                 $scope.validationErrors = [];
-                console.log(roleModel);
                 if (roleModel === undefined || roleModel.roleName === "") {
                     $scope.validationErrors.push("Enter role name.");
                 }
@@ -49,35 +55,52 @@
                     $scope.$parent.validationError($scope.validationErrors);
                     return;
                 }
-
                 roleService.createRole(roleModel).then((response) => {
-                    console.log(response);
-                    if (response.data != undefined || response.data !== null) {
-                        console.log(response.data);
-                        alert(response.data.message);
-                        $scope.getRoles();
+                    if (response.data !== null) {
+                        if (response.data.isSucceeded) {
+                            alert(response.data.message);
+                            $scope.getRoles();
+                            roleModel.roleName = '';
+                        }
+                        if (response.data.isError) {
+                            alert(response.data.message);
+                        }
                     } else {
                         alert(response.data.message);
                     }
                 });
             };
 
-            $scope.updateRole = (roleModel) => {
-                console.log(roleModel);
-                if (roleModel === undefined || roleModel.roleName === "") {
+            $scope.updateRole = (role) => {
+                console.log(role);
+                if (role === undefined || role.roleName === "") {
                     $("#validationModal").modal('show');
                     return;
                 }
                 else {
-                    $scope.showCreateLayout = true;
-                    $scope.showEditLayout = false;
-                    $scope.showListLayout = true;
-                    $window.scrollTo(0, angular.element('createDiv').offsetTop);
+                    roleService.updateRole(role).then((response) => {
+                        if (response.data.isSucceeded) {
+                            alert(response.data.message);
+                        }
+                        $scope.getRoles();
+                        $scope.cancel();
+                    });
                 }
             };
 
-            $scope.cancel = (roleModel) => {
-                roleModel = {};
+            $scope.deleteRole = (roleId) => {
+                console.log(roleId);
+                roleService.deleteRole(roleId).then((response) => {
+                    console.log(response);
+                    $scope.getRoles();
+                    $scope.cancel();
+                    if (response.data.isSucceeded) {
+                        alert(response.data.message);
+                    }
+                });
+            };
+
+            $scope.cancel = () => {
                 $scope.rolneName = '';
                 $scope.showCreateLayout = true;
                 $scope.showEditLayout = false;

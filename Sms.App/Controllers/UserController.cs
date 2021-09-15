@@ -73,7 +73,8 @@ namespace Sms.App.Controllers
                     var cliams = new List<Claim>()
                         {
                             new Claim(ClaimTypes.Email,userDetail.Email),
-                            new Claim(ClaimTypes.Name,userDetail.Name)
+                            new Claim("username",userDetail.Email),
+                            new Claim(ClaimTypes.Name, userDetail.Name)
                         };
                     var claimIdentity = new ClaimsIdentity(cliams, CookieAuthenticationDefaults.AuthenticationScheme);
                     var claimPrinciples = new ClaimsPrincipal(claimIdentity);
